@@ -28,7 +28,7 @@ public class AccountService {
         if(!account.getUsername().isBlank()){ // not blank
             Account test_account = accountDAO.getAccountByUsername(account.getUsername());
             if(test_account != null){ // username exists
-                if(account.getPassword().equals(test_account.getPassword())){
+                if(account.getPassword().equals(test_account.getPassword())){ // passwords match
                     return accountDAO.getAccountByUsername(account.getUsername());
                 }                
             }
