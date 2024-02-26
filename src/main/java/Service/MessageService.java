@@ -54,9 +54,7 @@ public class MessageService {
             if(!new_text.isBlank() && new_text.length() < 256){
                 Message message = messageDAO.getMessageById(message_id);
                 if(message != null){
-                    if(messageDAO.updateMessageById(message_id, new_text)){
-                        return messageDAO.getMessageById(message_id);
-                    }
+                    return messageDAO.updateMessageById(message, new_text);
                 }
             }
         }

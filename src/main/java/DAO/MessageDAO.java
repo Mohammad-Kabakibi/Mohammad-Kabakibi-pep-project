@@ -123,20 +123,22 @@ public class MessageDAO {
         return false;
     }
 
-    public boolean updateMessageById(int message_id, String new_text){
+    public Message updateMessageById(Message message, String new_text){
         Connection connection = ConnectionUtil.getConnection();
         try {
             String sql = "update message set message_text = ? where message_id = ?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, new_text);
-            preparedStatement.setInt(2, message_id);
+            preparedStatement.setInt(2, message.getMessage_id());
             
-            int updated_rows = preparedStatement.executeUpdate();
-            return updated_rows != 0; // should be 1
+            preparedStatement.executeUpdate();
+            
+            message.setMessage_text(new_text);
+            return message;
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
-        return false;
+        return null;
     }
 
 
